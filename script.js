@@ -17,12 +17,11 @@ function iloLiKamaPaliAlaPali(paliAlaPali) {
 }
 
 async function lipuOKama(nasinLipu) {
-  let nasin = new URL('https://fucking-cors.tbodt.repl.co');
+  let nasin = new URL('https://tbodt.com/cia-bin/lipua.sh');
   nasin.search = nasinLipu;
   if (new URL(nasinLipu).hostname !== 'cdn.discordapp.com')
     throw new Error('link must be to cdn.discordapp.com');
   let lipu = await (await fetch(nasin)).text();
-  alert("Fetched")
 
 
   x(g('lipu'));
