@@ -17,9 +17,11 @@ function iloLiKamaPaliAlaPali(paliAlaPali) {
 }
 
 async function lipuOKama(nasinLipu) {
+  let nasin = new URL('https://fucking-cors.tbodt.repl.co');
+  nasin.search = nasinLipu;
   if (new URL(nasinLipu).hostname !== 'cdn.discordapp.com')
     throw new Error('link must be to cdn.discordapp.com');
-  let lipu = await (await fetch("https://api.cors.lol/url=" + nasinLipu.replace(/^https?:\/\//g, "")).text();
+  let lipu = await (await fetch(nasin)).text();
   alert("Fetched")
 
 
@@ -29,7 +31,7 @@ async function lipuOKama(nasinLipu) {
     throw new Error('doesn\'t look like the right format');
   }
   lipu = lipu.slice(open.length + 2);
-
+  
   let tokiAle = [...lipu.matchAll(/\[\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}\] .*?(#\d+)? \(\d+\):/gd)];
   for (let [i, toki] of tokiAle.entries()) {
     g('lipu').appendChild(
