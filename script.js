@@ -3,7 +3,7 @@ import { g, x, h, t } from "https://unpkg.com/@xeserv/xeact@0.70.0/xeact.js";
 function kamaLipuOOpen(nasinLipu) {
   g('pakala').innerText = '';
   iloLiKamaPaliAlaPali(true);
-  lipuOKama(nasinLipu)
+  lipuOKama("https://api.cors.lol/url=" + nasinLipu.replace(/^https?:\/\//g, ""))
     .catch(pkl => {
       console.error(pkl);
       g('pakala').innerText = pkl;
@@ -15,15 +15,6 @@ function iloLiKamaPaliAlaPali(paliAlaPali) {
   g('o-awen').style.display = paliAlaPali ? '' : 'none';
   g('nena-pana').disabled = paliAlaPali;
 }
-
-async function lipuOKama(nasinLipu) {
-  let nasin = new URL('placeholder');
-  nasin.search = nasinLipu;
-  if (new URL(nasinLipu).hostname !== 'cdn.discordapp.com')
-    throw new Error('link must be to cdn.discordapp.com');
-  let lipu = await (await fetch(nasin)).text();
-  alert("Fetched")
-
 
   x(g('lipu'));
   let open = lipu.split('\n\n')[0];
