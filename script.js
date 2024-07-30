@@ -3,7 +3,7 @@ import { g, x, h, t } from "https://unpkg.com/@xeserv/xeact@0.70.0/xeact.js";
 function kamaLipuOOpen(nasinLipu) {
   g('pakala').innerText = '';
   iloLiKamaPaliAlaPali(true);
-  lipuOKama("https://api.cors.lol/url=" + nasinLipu.replace(/^https?:\/\//g, ""))
+  lipuOKama(nasinLipu)
     .catch(pkl => {
       console.error(pkl);
       g('pakala').innerText = pkl;
@@ -16,13 +16,20 @@ function iloLiKamaPaliAlaPali(paliAlaPali) {
   g('nena-pana').disabled = paliAlaPali;
 }
 
+async function lipuOKama(nasinLipu) {
+  if (new URL(nasinLipu).hostname !== 'cdn.discordapp.com')
+    throw new Error('link must be to cdn.discordapp.com');
+  let lipu = await (await fetch("https://api.cors.lol/url=" + nasinLipu.replace(/^https?:\/\//g, "")).text();
+  alert("Fetched")
+
+
   x(g('lipu'));
   let open = lipu.split('\n\n')[0];
   if (!open.startsWith('Transcript of ticket') || open.includes('/n')) {
     throw new Error('doesn\'t look like the right format');
   }
   lipu = lipu.slice(open.length + 2);
-  
+
   let tokiAle = [...lipu.matchAll(/\[\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}\] .*?(#\d+)? \(\d+\):/gd)];
   for (let [i, toki] of tokiAle.entries()) {
     g('lipu').appendChild(
