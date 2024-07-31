@@ -26,7 +26,7 @@ async function lipuOKama(nasinLipu) {
 
   x(g('lipu'));
   let open = lipu.split('\n\n')[0];
-  if (!open.startsWith('Transcript of ticket') || open.includes('/n')) {
+  if (!open.startsWith('Transcript of ticket') || open.includes('\n')) {
     throw new Error('doesn\'t look like the right format');
   }
   lipu = lipu.slice(open.length + 2);
