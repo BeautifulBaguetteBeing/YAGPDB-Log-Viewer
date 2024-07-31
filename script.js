@@ -20,14 +20,14 @@ async function lipuOKama(nasinLipu) {
   if (new URL(nasinLipu).hostname !== "cdn.discordapp.com")
         throw new Error("link must be to cdn.discordapp.com");
   const nasin = new URL(
-        "https://api.cors.lol/?url=    " + encodeURIComponent(nasinLipu)
+        "https://api.cors.lol/?url=" + encodeURIComponent(nasinLipu)
     );
   let lipu = await (await fetch(nasin)).text();
 
 
   x(g('lipu'));
   let open = lipu.split('\n\n')[0];
-  if (!open.startsWith('Transcript of ticket') || !open.includes('\n')) {
+  if (!open.startsWith('Transcript of ticket') || open.includes('\n')) {
     throw new Error('doesn\'t look like the right format');
   }
   lipu = lipu.slice(open.length + 2);
