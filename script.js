@@ -21,7 +21,7 @@ async function lipuOKama(nasinLipu) {
   nasin.search = nasinLipu;
   if (new URL(nasinLipu).hostname !== 'cdn.discordapp.com')
     throw new Error('link must be to cdn.discordapp.com');
-  let lipu = await (await fetch(nasin)).text();
+  let lipu = await (await fetch(nasinLipu, { mode: 'no-cors' })).text();
 
 
   x(g('lipu'));
