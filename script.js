@@ -20,7 +20,7 @@ async function lipuOKama(nasinLipu) {
   if (new URL(nasinLipu).hostname !== "cdn.discordapp.com")
         throw new Error("link must be to cdn.discordapp.com");
   const nasin = new URL(
-        "https://api.cors.lol/?url=" + encodeURIComponent(nasinLipu)
+        "https://corsproxy.io/?" + encodeURIComponent(nasinLipu)
     );
   let lipu = await (await fetch(nasin)).text();
 
